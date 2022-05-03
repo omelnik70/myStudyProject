@@ -9,19 +9,19 @@ import Routing from './Routing';
 
 function App() {
   return (
-      <div className='App-wrapper'>
-        <div className='App-container'>
-          <div className='App-header'>
-            <Header />
-          </div>
-          <div className='App-content'>
-            <Routing />
-          </div>
-          <div className='App-footer'>
-            <Footer />
-          </div>
+    <div className="app-wrapper">
+      <div className="app-container">
+        <div className="app-header">
+          <Header />
+        </div>
+        <div className="app-content">
+          <Routing />
+        </div>
+        <div className="app-footer">
+          <Footer />
         </div>
       </div>
+    </div>
   );
 }
 

@@ -5,6 +5,7 @@ import Home from './pages/home/home';
 import About from './pages/about/about';
 import Contact from './pages/contact/contact';
 import Error from './pages/error/error';
+import Login from './pages/login/login';
 
 
 function Routing() {
@@ -14,6 +15,7 @@ function Routing() {
           <Route exact path="/" element={ <Home /> } />
           <Route path="/about" element={ <About /> } />
           <Route path="/contact" element={ <Contact /> } />
+          <Route path="/sign" element={ <Login /> } />
           <Route path="*" element={ <Error /> } />
       </Routes>
     </div>

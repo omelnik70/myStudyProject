@@ -17,6 +17,9 @@ function Navigation () {
                 <li>
                     <Link to="/contact"><span>Contact</span></Link>
                 </li>
+                <li>
+                    <Link to="/sign"><span>Login</span></Link>
+                </li>
             </ul>
         </nav>
     );

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './home-style.scss';
 
 function Home() {

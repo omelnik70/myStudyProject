@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './error-style.scss';
 
 function Error () {

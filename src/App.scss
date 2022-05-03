@@ -1,14 +1,14 @@
-.App-container {
-  min-height: 100%; //растягиваем оболочку на весь экран по высоте
+.app-wrapper {
+	min-height: 100%;
+}
+
+.app-container {
+	min-height: 100%; //растягиваем оболочку на весь экран по высоте
 	overflow: hidden; //скрываем не влезшие элементы
 	display: flex; //создаем flex контейнер
 	flex-direction: column; //выстраеваем header, content и footer один под другим
 }
 
-.App-header {}
-
-.App-content {
-  flex: 1 1 auto; //разрешаем content занять все простанство, прижимаем footer вниз, а header вверх
+.app-content {
+	flex: 1 1 auto; //разрешаем content занять все простанство, прижимаем footer вниз, а header вверх
 }
-
-.App-footer {}
