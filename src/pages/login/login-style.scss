@@ -13,49 +13,26 @@
   margin: 40px 0 30px 0;
 }
 
-.login-email {
+.block-input {
   width: 85%;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin: 0px auto 25px;
+  margin: 0px auto 5px;
   text-align: left;
-}
-
-.login-email input {
-  font-size: 16px;
-  padding: 10px 5px;
-  &:focus {
-    background: rgb(230, 233, 231);
+  & input {
+    font-size: 16px;
+    padding: 10px 5px;
+    &:focus {
+      background: rgb(230, 233, 231);
+    }
   }
 }
 
-.login-text-email-invalid {
+.loginInvalid {
   display: block;
   position: relative;
   width: 85%;
-  top: -24px;
-  left: 8%;
-  z-index: 1;
-  text-align: center;
-  background: rgba(197, 241, 221, 0.9);
-  font-size: 16px;
-  padding: 5px 10px;
-  border: 1px dashed #078353;
- }
-
-.login-text-email-hide {
-  display: none;
-}
-
-.login-text-pass-hide {
-  display: none;
-}
-
-.login-text-pass-invalid {
-  display: block;
-  position: relative;
-  width: 85%;
-  top: 1px;
+  top: 0;
   left: 8%;
   z-index: 1;
   text-align: center;
@@ -77,22 +54,6 @@
   color: rgb(134, 134, 134);
 }
 
-.login-password {
-  width: 85%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: left;
-  margin: 0 auto;
-}
-
-.login-password input {
-  font-size: 16px;
-  padding: 10px 5px;
-  &:focus {
-    background: rgb(230, 233, 231);
-  }
-}
-
 .login-button button {
   display: block;
   width: 30%;
@@ -109,4 +70,8 @@
   background-color: hsl(157, 74%, 17%);
   text-transform: uppercase;
   margin: 0 auto;
+}
+
+.textHide {
+  display: none;
 }

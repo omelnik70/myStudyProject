@@ -8,8 +8,8 @@ function Login() {
 const [inputEmail, setInputEmail] = useState('Email');
 const [inputPass, setInputPass] = useState('Password');
 const [checkon, setCheckon] = useState();
-const [errEmail, setErrEmail] = useState('login-text-email-hide');
-const [errPass, setErrPass] = useState('login-text-pass-hide');
+const [errEmail, setErrEmail] = useState('textHide');
+const [errPass, setErrPass] = useState('textHide');
 
 
 const changeInputEmail = (e) => setInputEmail(e.target.value);
@@ -18,35 +18,38 @@ const checkCheckbox = (e) => setCheckon(e.target.checked);
 const changeTypePass = checkon ? 'text' : 'password';
 const checkSymbolEmail = inputEmail.includes('@');
 const checkDot = inputEmail.includes('.');
-const textInvalidEmail = 'login-text-email-invalid';
-const textHideEmail = 'login-text-email-hide';
-const textInvalidPass = 'login-text-pass-invalid';
-const textHidePass = 'login-text-pass-hide';
+const textHide = 'textHide';
 const checkLenghtPass = inputPass.length;
+const textInvalid = 'loginInvalid';
+let errBtn = textHide;
 
 const checkInputEmail = () => {
   if(checkDot == true) {
     if(checkSymbolEmail == true) {
-    return textHideEmail;
+    return textHide;
     }
   }
-return textInvalidEmail;
+return textInvalid;
 }
 
 const checkInputPass = (e) => {
   if(checkLenghtPass > 8) {
-    return textHidePass;
+    return textHide;
   }
-  return textInvalidPass;
+  return textInvalid;
 }
 
 function handleSubmit(e) {
-  console.log(
-    'Email: ' + inputEmail,
-    'Password: ' + inputPass,
-  );
-  e.preventDefault();
+  if(errPass == textHide && errEmail == textHide) {
+    console.log(
+      'Email: ' + inputEmail,
+      'Password: ' + inputPass,
+    );
+    e.preventDefault();
+  }
 }
+
+console.log();
 
   return (
     <div className="login-container">
@@ -57,7 +60,7 @@ function handleSubmit(e) {
           Login
         </h1>
 
-        <div className='login-email'>
+        <div className='block-input'>
           <input 
           onChange={changeInputEmail} 
           onBlur={() => setErrEmail(checkInputEmail)}
@@ -70,7 +73,7 @@ function handleSubmit(e) {
         
         <span className={errEmail}>Email должен содержать '@' и '.'!</span>
         
-        <div className='login-password'>
+        <div className='block-input'>
           <input 
           onChange={changeInputPass}
           onBlur={() => setErrPass(checkInputPass)}
@@ -81,7 +84,7 @@ function handleSubmit(e) {
           required />
         </div>
 
-        <span className={errPass}>Должно быть более 8 символов!</span>
+        <span className={errPass}>Должно быть более 7 символов!</span>
         
         <div className="login-checkbox">
           <input 
@@ -96,12 +99,13 @@ function handleSubmit(e) {
         
         <div className="login-button">
           <button 
-          type="submit"
-          value="submit">
+          type="submit">
             <span>sign in</span>
           </button>
         </div>  
       
+        <span className={errBtn}>Вы не заполнили поля формы!</span>
+
       </form>
     </div>
   );
