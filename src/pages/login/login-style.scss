@@ -2,7 +2,7 @@
   max-width: 340px;
   min-height: 100%;
   border: 20px solid #078353;
-  margin: 0 auto;
+  margin: 100px auto;
 }
 
 .login-title {
@@ -17,8 +17,9 @@
   width: 85%;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin: 0px auto 5px;
+  margin: 0 auto 30px;
   text-align: left;
+  position: relative;
   & input {
     font-size: 16px;
     padding: 10px 5px;
@@ -28,19 +29,17 @@
   }
 }
 
-.loginInvalid {
+.textInvalid {
   display: block;
-  position: relative;
-  width: 85%;
-  top: 0;
-  left: 8%;
-  z-index: 1;
+  width: 100%;
   text-align: center;
   background: rgba(197, 241, 221, 0.9);
   font-size: 16px;
   padding: 5px 10px;
   border: 1px dashed #078353;
-  margin-bottom: 0;
+  position: absolute;
+  top: 40px;
+  left: 0;
 }
 
 .login-checkbox {
@@ -54,22 +53,16 @@
   color: rgb(134, 134, 134);
 }
 
-.login-button button {
+.login-button {
   display: block;
-  width: 30%;
-  padding: 12px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: hsl(157, 74%, 17%);
-  margin: 20px auto 40px;
-}
-
-.login-button span {
-  display: inline-block;
   color: #ccc;
-  background-color: hsl(157, 74%, 17%);
+  font-weight: 700;
+  background-color: grey;
   text-transform: uppercase;
-  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: default;
+  margin: 30px auto;
 }
 
 .textHide {
