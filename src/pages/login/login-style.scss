@@ -53,7 +53,7 @@
   color: rgb(134, 134, 134);
 }
 
-.login-button {
+.login-button button {
   display: block;
   color: #ccc;
   font-weight: 700;
@@ -63,6 +63,10 @@
   border-radius: 5px;
   cursor: default;
   margin: 30px auto;
+}
+
+.login-button {
+  position: relative;
 }
 
 .textHide {

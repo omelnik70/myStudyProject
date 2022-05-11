@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import Input from '../../components/form/Input';
+import Button from '../../components/form/Button';
+
 import './login-style.scss';
 
 
@@ -25,6 +28,13 @@ const emailSetDisabled = () => document.getElementById('mail').setAttribute('dis
 const boxSetDisabled = () => document.getElementById('box').setAttribute('disabled', '');
 const btnSetStyle = () => document.getElementById('btn').setAttribute('style', 'background: hsl(157, 74%, 17%);cursor: pointer');
 const btnRemoveStyle = () => document.getElementById('btn').removeAttribute('style', 'background: hsl(157, 74%, 17%);cursor: pointer');
+const EmailTextSetStyleNone = () => document.getElementById('textEmailInvalid').setAttribute('style', 'display: none;');
+const EmailTextRemovetStyleNone = () => document.getElementById('textEmailInvalid').removeAttribute('style', 'display: none;');
+const PassTextSetStyleNone = () => document.getElementById('textPassInvalid').setAttribute('style', 'display: none;');
+const PassTextRemovetStyleNone = () => document.getElementById('textPassInvalid').removeAttribute('style', 'display: none;');
+const resetData = () => document.getElementById('btn').setAttribute('type', 'reset');
+const submitMessageRemove = () =>  document.getElementById('textBtnSend').classList.remove('textHide');
+const submitMessageAdd = () => document.getElementById('textBtnSend').classList.add('textInvalid');
 
 const blurOnEmail = () => setBlurEmail( function() {
   if(textEmail) {
@@ -61,52 +71,79 @@ const checkButton = () => {
   }
 }
 
+const hideTextMouseEmail = () => {
+  EmailTextSetStyleNone();
+}
+
+const showTextMouseEmail = () => {
+  EmailTextRemovetStyleNone();
+}
+
+const hideTextMousePass = () => {
+  PassTextSetStyleNone();
+}
+
+const showTextMousePass = () => {
+  PassTextRemovetStyleNone();
+}
+
+const reset = () => {
+  resetData();
+}
+
 function handleSubmit(e) {
     console.log(
     'Email: ' + textEmail,
     'Password: ' + textPass,
     );
     e.preventDefault();
+    btnSetDisabled();
+    btnRemoveStyle();
+    submitMessageRemove();
+    submitMessageAdd();
+    setTimeout(reset(), 1000);
 }
 
   return (
     <div className='wrapper'>
       <div className="login-container">
       
-        <form onMouseOver={checkButton} id="form" className="login-form" onSubmit={handleSubmit} method='GET'>
+        <form onMouseOver={checkButton}  id="form" className="login-form" onSubmit={handleSubmit} method='GET'>
             
           <h1 className="login-title">
             Login
           </h1>
           
           <div className='block-input'>
-            <div>
-              <input 
-              id='mail'
-              onChange={emailChange}
-              onBlur={blurOnEmail}
-              type='text' 
-              placeholder='Email'
-              size='26' />
-            </div>
+            
+            <Input
+            id='mail'
+            onChange={emailChange}
+            onBlur={blurOnEmail}
+            onMouseEnter={hideTextMouseEmail}
+            onMouseLeave={showTextMouseEmail}
+            type='text' 
+            placeholder='Email'
+            size='26' />
                 
-            <div id='text' className={blurEmail}>
+            <div id="textEmailInvalid" className={blurEmail} >
               Email должен содержать '@' и '.'!
             </div>
           </div>
               
           <div className='block-input'>
-            <div>
-              <input 
-              id='pass'
-              onChange={passChange}
-              onBlur={blurOnPass}
-              type={changeTypePass}
-              placeholder='Password'
-              size='26' />
-            </div>
+            
+            <Input
+            id='pass'
+            onChange={passChange}
+            onBlur={blurOnPass}
+            onMouseEnter={hideTextMousePass}
+            onMouseLeave={showTextMousePass}
+            type={changeTypePass} 
+            placeholder='Password'
+            size='26' />
                 
-            <div className={blurPass}>
+            <div id="textPassInvalid" className={blurPass}>
               Должно быть более 7 символов!
             </div>
           </div>
@@ -121,14 +158,21 @@ function handleSubmit(e) {
           <span className='login-text-checkbox'>
             show password
           </span>
+
+          <div className="login-button">
+            <div>
               
-          <button
-          className="login-button" 
-          id='btn'
-          type="submit"
-          disabled>
-            sign in
-          </button>     
+              <Button 
+              id='btn'
+              type="submit"
+              disabled 
+              text = 'sign in'/>
+
+              <div id="textBtnSend" className='textHide'>
+                Ваши данные отправлены!
+              </div>
+            </div>
+          </div>         
 
         </form>
       </div>
