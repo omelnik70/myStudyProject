@@ -1,12 +1,12 @@
 import React from 'react';
-import Navigation from '../Navigation/navigation';
+import Navigation from '../Navigation/index';
 
-import './header-style.scss';
+import styles from './styles.module.scss';
 
 
 function Header () {
     return (
-        <div className='Header'>
+        <div className={styles.header}>
             <Navigation />
         </div>
     );

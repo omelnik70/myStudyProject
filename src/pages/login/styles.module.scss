@@ -1,11 +1,13 @@
-.login-container {
+@import '../../global.scss';
+
+.container {
   max-width: 340px;
   min-height: 100%;
   border: 20px solid #078353;
   margin: 100px auto;
 }
 
-.login-title {
+.title {
   font-size: 30px;
   font-weight: 700;
   text-align: center;
@@ -13,7 +15,7 @@
   margin: 40px 0 30px 0;
 }
 
-.block-input {
+.input {
   width: 85%;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -42,18 +44,18 @@
   left: 0;
 }
 
-.login-checkbox {
+.checkbox {
   display: inline-block;
   margin: 5px 5px 0 10% ;
 }
 
-.login-text-checkbox {
+.textCheckbox {
   font-size: 16px;
   text-transform: capitalize;
   color: rgb(134, 134, 134);
 }
 
-.login-button button {
+.button button {
   display: block;
   color: #ccc;
   font-weight: 700;
@@ -65,7 +67,7 @@
   margin: 30px auto;
 }
 
-.login-button {
+.button {
   position: relative;
 }
 

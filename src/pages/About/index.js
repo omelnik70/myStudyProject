@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './about-style.scss';
+import styles from './styles.module.scss';
 
 function About() {
   return (
-    <div className="About-title">
+    <div className={styles.title}>
         <p>
           This page is About
         </p>

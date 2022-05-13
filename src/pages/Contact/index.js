@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './contact-style.scss';
+import styles from './styles.module.scss';
 
 function Contact() {
   return (
-    <div className="Contact-title">
+    <div className={styles.title}>
         <p>
           This page is Contact
         </p>

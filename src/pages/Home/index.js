@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './home-style.scss';
+import styles from './styles.module.scss';
 
 function Home() {
   return (
-    <div className="Home-title">
+    <div className={styles.title}>
         <p>
           This page is Home
         </p>

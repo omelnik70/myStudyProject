@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Home from './pages/home/home';
-import About from './pages/about/about';
-import Contact from './pages/contact/contact';
-import Error from './pages/error/error';
-import Login from './pages/login/login';
+import Home from './pages/Home/index';
+import About from './pages/About/index';
+import Contact from './pages/Contact/index';
+import Error from './pages/Error/index';
+import Login from './pages/login/index';
 
 
 function Routing() {

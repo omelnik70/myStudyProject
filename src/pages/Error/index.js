@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './error-style.scss';
+import styles from './styles.module.scss';
 
 function Error () {
   return (
-    <div className='Error-title'>
+    <div className={styles.title}>
         <p>
           Error 404. This page is not find.
         </p>

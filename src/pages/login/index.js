@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
 
-import './login-style.scss';
+import styles from './styles.module.scss';
 
 
 function Login() {
 
 const [textEmail, setTextEmail] = useState('');
 const [textPass, setTextPass] = useState('');
-const [blurEmail, setBlurEmail] = useState('textHide');
-const [blurPass, setBlurPass] = useState('textHide');
+const [blurEmail, setBlurEmail] = useState(styles.textHide);
+const [blurPass, setBlurPass] = useState(styles.textHide);
 const [checkon, setCheckon] = useState();
   
 const emailChange = (e) => setTextEmail(e.target.value);
@@ -33,35 +33,35 @@ const EmailTextRemovetStyleNone = () => document.getElementById('textEmailInvali
 const PassTextSetStyleNone = () => document.getElementById('textPassInvalid').setAttribute('style', 'display: none;');
 const PassTextRemovetStyleNone = () => document.getElementById('textPassInvalid').removeAttribute('style', 'display: none;');
 const resetData = () => document.getElementById('btn').setAttribute('type', 'reset');
-const submitMessageRemove = () =>  document.getElementById('textBtnSend').classList.remove('textHide');
-const submitMessageAdd = () => document.getElementById('textBtnSend').classList.add('textInvalid');
+const submitMessageRemove = () =>  document.getElementById('textBtnSend').classList.remove(styles.textHide);
+const submitMessageAdd = () => document.getElementById('textBtnSend').classList.add(styles.textInvalid);
 
 const blurOnEmail = () => setBlurEmail( function() {
   if(textEmail) {
     if(textEmail.includes('.') && textEmail.includes('@')) {
     passRemoveDisabled();
     boxRemoveDisabled();
-    return 'textHide';
+    return styles.textHide;
     }
   }
   passSetDisabled();
   boxSetDisabled();
   btnSetDisabled();
   btnRemoveStyle();
-  return 'textInvalid';
+  return styles.textInvalid;
 })
 
 const blurOnPass = () => setBlurPass( function() {
   if(textPass) {
     if(textPass.length > 7) {
     emailRemoveDisabled();
-    return 'textHide';
+    return styles.textHide;
     }
   }
   btnSetDisabled();
   btnRemoveStyle();
   emailSetDisabled();
-  return 'textInvalid';
+  return styles.textInvalid;
 })
 
 const checkButton = () => {
@@ -105,16 +105,16 @@ function handleSubmit(e) {
 }
 
   return (
-    <div className='wrapper'>
-      <div className="login-container">
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
       
-        <form onMouseOver={checkButton}  id="form" className="login-form" onSubmit={handleSubmit} method='GET'>
+        <form onMouseOver={checkButton}  id="form" className={styles.form} onSubmit={handleSubmit} method='GET'>
             
-          <h1 className="login-title">
+          <h1 className={styles.title}>
             Login
           </h1>
           
-          <div className='block-input'>
+          <div className={styles.input}>
             
             <Input
             id='mail'
@@ -131,7 +131,7 @@ function handleSubmit(e) {
             </div>
           </div>
               
-          <div className='block-input'>
+          <div className={styles.input}>
             
             <Input
             id='pass'
@@ -148,18 +148,18 @@ function handleSubmit(e) {
             </div>
           </div>
               
-          <div className="login-checkbox">
+          <div className={styles.checkbox}>
             <input 
             id='box'
             onClick={checkboxOn}
             type="checkbox" />
           </div>
               
-          <span className='login-text-checkbox'>
+          <span className={styles.textCheckbox}>
             show password
           </span>
 
-          <div className="login-button">
+          <div className={styles.button}>
             <div>
               
               <Button 
@@ -168,7 +168,7 @@ function handleSubmit(e) {
               disabled 
               text = 'sign in'/>
 
-              <div id="textBtnSend" className='textHide'>
+              <div id="textBtnSend" className={styles.textHide}>
                 Ваши данные отправлены!
               </div>
             </div>
