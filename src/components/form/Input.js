@@ -1,18 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Input(props) {
+const Input = (props) => {
 
     return (
         <div>
-            <input 
-            id = {props.id}
-            onChange = {props.onChange}
-            onBlur = {props.onBlur}
-            onMouseEnter = {props.onMouseEnter}
-            onMouseLeave = {props.onMouseLeave}
-            type = {props.type}
-            placeholder = {props.placeholder}
-            size = {props.size} />
+            <input {...props} />
         </div>
     );
 }
+
+export default Input;

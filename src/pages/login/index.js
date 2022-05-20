@@ -6,172 +6,114 @@ import Button from '../../components/form/Button';
 import styles from './styles.module.scss';
 
 
-function Login() {
+const Login = () => {
 
 const [textEmail, setTextEmail] = useState('');
 const [textPass, setTextPass] = useState('');
-const [blurEmail, setBlurEmail] = useState(styles.textHide);
-const [blurPass, setBlurPass] = useState(styles.textHide);
 const [checkon, setCheckon] = useState();
+const [isHoveringEmail, setIsHoveringEmail] = useState(true);
+const [isHoveringPass, setIsHoveringPass] = useState(true);
+const [blurEmail, setBlurEmail] = useState();
+const [blurPass, setBlurPass] = useState();
+const [clickBtn, setClickBtn] = useState();
   
-const emailChange = (e) => setTextEmail(e.target.value);
-const passChange = (e) => setTextPass(e.target.value);
-const checkboxOn = (e) => setCheckon(e.target.checked);
 const changeTypePass = checkon ? 'text' : 'password';
-const passRemoveDisabled = () => document.getElementById('pass').removeAttribute('disabled', '');
-const boxRemoveDisabled = () => document.getElementById('box').removeAttribute('disabled', '');
-const emailRemoveDisabled = () => document.getElementById('mail').removeAttribute('disabled', '');
-const btnRemoveDisabled = () => document.getElementById('btn').removeAttribute('disabled', '');
-const btnSetDisabled = () => document.getElementById('btn').setAttribute('disabled', '');
-const passSetDisabled = () => document.getElementById('pass').setAttribute('disabled', '');
-const emailSetDisabled = () => document.getElementById('mail').setAttribute('disabled', '');
-const boxSetDisabled = () => document.getElementById('box').setAttribute('disabled', '');
-const btnSetStyle = () => document.getElementById('btn').setAttribute('style', 'background: hsl(157, 74%, 17%);cursor: pointer');
-const btnRemoveStyle = () => document.getElementById('btn').removeAttribute('style', 'background: hsl(157, 74%, 17%);cursor: pointer');
-const EmailTextSetStyleNone = () => document.getElementById('textEmailInvalid').setAttribute('style', 'display: none;');
-const EmailTextRemovetStyleNone = () => document.getElementById('textEmailInvalid').removeAttribute('style', 'display: none;');
-const PassTextSetStyleNone = () => document.getElementById('textPassInvalid').setAttribute('style', 'display: none;');
-const PassTextRemovetStyleNone = () => document.getElementById('textPassInvalid').removeAttribute('style', 'display: none;');
-const resetData = () => document.getElementById('btn').setAttribute('type', 'reset');
-const submitMessageRemove = () =>  document.getElementById('textBtnSend').classList.remove(styles.textHide);
-const submitMessageAdd = () => document.getElementById('textBtnSend').classList.add(styles.textInvalid);
+const checkAll = textPass.length > 7 && textEmail.includes('.') && textEmail.includes('@');
+const emailCheck = textEmail.includes('.') && textEmail.includes('@');
+const passCheck = textPass.length > 7;
+const crossClass = (action, check, value) => action || check || !value ? 'textHide' : 'textInvalid';
 
-const blurOnEmail = () => setBlurEmail( function() {
-  if(textEmail) {
-    if(textEmail.includes('.') && textEmail.includes('@')) {
-    passRemoveDisabled();
-    boxRemoveDisabled();
-    return styles.textHide;
-    }
-  }
-  passSetDisabled();
-  boxSetDisabled();
-  btnSetDisabled();
-  btnRemoveStyle();
-  return styles.textInvalid;
-})
-
-const blurOnPass = () => setBlurPass( function() {
-  if(textPass) {
-    if(textPass.length > 7) {
-    emailRemoveDisabled();
-    return styles.textHide;
-    }
-  }
-  btnSetDisabled();
-  btnRemoveStyle();
-  emailSetDisabled();
-  return styles.textInvalid;
-})
-
-const checkButton = () => {
-  if(textPass.length > 7 && textEmail.includes('.') && textEmail.includes('@')) {
-    btnRemoveDisabled();
-    btnSetStyle();
+const btnStyleActive = () => {
+  if(checkAll) {
+    return ({backgroundColor: 'green', cursor: 'pointer',});
   }
 }
 
-const hideTextMouseEmail = () => {
-  EmailTextSetStyleNone();
+const showMessage = () => clickBtn ? 'textInvalid' : 'textHide';
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if(checkAll) {
+    console.log('Email: ' + textEmail, 'Password: ' + textPass,);
+    setTextPass('');
+    setTextEmail('');
+  }
 }
 
-const showTextMouseEmail = () => {
-  EmailTextRemovetStyleNone();
-}
-
-const hideTextMousePass = () => {
-  PassTextSetStyleNone();
-}
-
-const showTextMousePass = () => {
-  PassTextRemovetStyleNone();
-}
-
-const reset = () => {
-  resetData();
-}
-
-function handleSubmit(e) {
-    console.log(
-    'Email: ' + textEmail,
-    'Password: ' + textPass,
-    );
-    e.preventDefault();
-    btnSetDisabled();
-    btnRemoveStyle();
-    submitMessageRemove();
-    submitMessageAdd();
-    setTimeout(reset(), 1000);
+const inputDisabled = (blur, check) => {
+  if (!blur || check) {
+    return false;
+  }
+  return true;
 }
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
       
-        <form onMouseOver={checkButton}  id="form" className={styles.form} onSubmit={handleSubmit} method='GET'>
+        <form 
+        className={styles.form} 
+        onSubmit={handleSubmit}
+        method='GET'>
             
-          <h1 className={styles.title}>
-            Login
-          </h1>
+          <h1 className={styles.title}>Login</h1>
           
           <div className={styles.input}>
-            
             <Input
             id='mail'
-            onChange={emailChange}
-            onBlur={blurOnEmail}
-            onMouseEnter={hideTextMouseEmail}
-            onMouseLeave={showTextMouseEmail}
+            value={textEmail}
+            onChange={(e) => setTextEmail(e.target.value)}
+            onMouseEnter={() => setIsHoveringEmail(true)} 
+            onMouseLeave={() => setIsHoveringEmail(false)}
+            onBlur={(e) => setBlurEmail(e.target.value)}
             type='text' 
             placeholder='Email'
-            size='26' />
-                
-            <div id="textEmailInvalid" className={blurEmail} >
+            size='26'
+            disabled = {inputDisabled(blurPass, passCheck)} 
+            />  
+            <label 
+            htmlFor='mail'
+            className={styles[crossClass(isHoveringEmail, emailCheck, textEmail)]}>
               Email должен содержать '@' и '.'!
-            </div>
+            </label>
           </div>
               
           <div className={styles.input}>
-            
             <Input
-            id='pass'
-            onChange={passChange}
-            onBlur={blurOnPass}
-            onMouseEnter={hideTextMousePass}
-            onMouseLeave={showTextMousePass}
+            value={textPass}
+            onChange={(e) => setTextPass(e.target.value)}
+            onMouseEnter={() => setIsHoveringPass(true)} 
+            onMouseLeave={() => setIsHoveringPass(false)}
+            onBlur={(e) => setBlurPass(e.target.value)}
             type={changeTypePass} 
             placeholder='Password'
-            size='26' />
-                
-            <div id="textPassInvalid" className={blurPass}>
+            size='26'
+            disabled = {inputDisabled(blurEmail, emailCheck)} />
+            <label
+            className={styles[crossClass(isHoveringPass, passCheck, textPass)]}>
               Должно быть более 7 символов!
-            </div>
+            </label>
           </div>
               
           <div className={styles.checkbox}>
             <input 
-            id='box'
-            onClick={checkboxOn}
-            type="checkbox" />
+            onChange={(e) => setCheckon(e.target.checked)}
+            type="checkbox"
+            disabled = {inputDisabled(blurEmail, emailCheck)} />
           </div>
-              
           <span className={styles.textCheckbox}>
             show password
           </span>
 
           <div className={styles.button}>
-            <div>
-              
               <Button 
-              id='btn'
-              type="submit"
-              disabled 
-              text = 'sign in'/>
-
-              <div id="textBtnSend" className={styles.textHide}>
-                Ваши данные отправлены!
-              </div>
-            </div>
+              onClick={() => setClickBtn(true)} 
+              style={btnStyleActive()}
+              type='submit'
+              text = 'sign in'
+              disabled = {inputDisabled(true, checkAll)} 
+              />
+              <div className={styles[showMessage()]}>Ваши данные отправлены!</div>
           </div>         
 
         </form>
@@ -181,5 +123,3 @@ function handleSubmit(e) {
 }
 
 export default Login;
-
-
